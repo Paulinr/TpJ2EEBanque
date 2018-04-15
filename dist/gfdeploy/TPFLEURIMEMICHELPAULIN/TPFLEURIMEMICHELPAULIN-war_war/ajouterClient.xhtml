@@ -5,9 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-  
-    
-    
+    <h:head>
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+    </h:head>
     <body>
 
         <ui:composition template="/template/home.xhtml">
@@ -15,36 +15,37 @@
             
                
                 <f:view>
+                    
+                     <div class="panel panel-success">
+                        <div class="panel-heading">   Nouveau Client</div>
+                   
+                          <div class="panel-body">
+                              <p:messages id="messages" />
                   <h:form class="form-horizontal" role="form">   
-                    <div class="row">
-                    <div class="col-md-6 ">
+                          
+               
                         
-            
-              
-                        <p:fieldset  style="margin-bottom:3px">
-                             <legend style="background-color: #245580; color: white;text-align: center; padding: 3px;">Nouveau Client</legend>
-            
-                        <p:messages id="messages" showDetail="true" /> 
-                        
-     
                         <div class="form-group">
-                            <h:outputLabel class="col-md-3 control-label" value="NIF :" for="nif" />
-                          <div class="col-md-8">
+                            <h:outputLabel class="col-md-3 control-label" value="NIF * :" for="nif" />
+                            <div class="col-md-8">
                               <p:inputMask class="form-group-lg" id="nif" value="#{newClientMBean.client.nif}" mask="999-999-999-9" required="true" requiredMessage="Veuillez entrer votre numero d'identification ?"/>
-                          </div>
+                              <h:message for="nif" errorClass="errorMsg"/>
+                            </div>
                        </div>
                          <div class="form-group">
-                            <h:outputLabel class="col-md-3 control-label" value="Nom :" for="nom" />
-                          <div class="col-md-8">
+                            <h:outputLabel class="col-md-3 control-label" value="Nom * :" for="nom" />
+                          <div class="col-md-9">
                               <p:inputText class="form-group-lg" id="nom" value="#{newClientMBean.client.nom}" title="Nom" placeholder="Entrer votre nom" required="true" requiredMessage="Veuillez entrer votre nom ?"/>
-                           </div>
+                               <h:message for="nom" errorClass="errorMsg"/>
+                          </div>
                        </div> 
                         
                         <div class="form-group">
-                            <h:outputLabel class="col-md-3 control-label" value="Prénom :" for="prenom" />
-                         <div class="col-md-8">
+                            <h:outputLabel class="col-md-3 control-label" value="Prénom * :" for="prenom" />
+                         <div class="col-md-9">
                              <p:inputText class="form-group-lg" id="prenom" value="#{newClientMBean.client.prenom}" title="Prenom" placeholder="Entrer votre prenom" required="true" requiredMessage="Veuillez entrer votre prenom ?" /> 
-                           </div>
+                              <h:message for="prenom" errorClass="errorMsg"/>
+                         </div>
                        </div>   
                         
              <div class="form-group">
@@ -87,17 +88,19 @@
                              <div class="form-group">
                              <div class="col-sm-offset-3 col-sm-8">
                              <div class="pull-left">
-                                <h:commandButton value="Ajouter" action="${newClientMBean.creeClient()}" type="submit" class="btn-lg btn-success"> </h:commandButton> 
+                                 <h:commandButton value="Ajouter" action="${newClientMBean.creeClient()}" type="submit" class="btn-lg btn-success"> </h:commandButton> 
                                <h:button outcome="/index.xhtml"  value="Retour" class="btn-lg btn-default preview-add-button"/>  
                                  
                              </div>
                              </div>
                              </div>
-                    </p:fieldset>
                    
-                    </div>
-                    </div>
+                   
+                           
+                   
                 </h:form> 
+                              
+                          </div></div>
                 </f:view>
 
             

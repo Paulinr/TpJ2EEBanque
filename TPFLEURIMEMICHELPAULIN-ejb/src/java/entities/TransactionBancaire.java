@@ -24,14 +24,23 @@ public class TransactionBancaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private int montant;
+    private float montant;
+    private String description;
 
     public TransactionBancaire(int montant, CompteBancaire comptebancaire, Client client) {
         this.montant = montant;
         this.comptebancaire = comptebancaire;
         this.client = client;
-        this.dateTransaction=new Date("mm/dd/yyyy");
+        this.dateTransaction=new Date();
     }
+
+    public TransactionBancaire(float montant, String description) {
+        this.montant = montant;
+        this.description = description;
+         this.dateTransaction=new Date();
+    }
+    
+    
 
     public TransactionBancaire() {
        
@@ -45,11 +54,11 @@ public class TransactionBancaire implements Serializable {
         this.id = id;
     }
 
-    public int getMontant() {
+    public float getMontant() {
         return montant;
     }
 
-    public void setMontant(int montant) {
+    public void setMontant(float montant) {
         this.montant = montant;
     }
 
@@ -106,6 +115,14 @@ public class TransactionBancaire implements Serializable {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

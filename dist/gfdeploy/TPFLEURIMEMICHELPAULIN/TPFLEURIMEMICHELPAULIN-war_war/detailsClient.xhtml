@@ -21,43 +21,88 @@
                
                 <f:view>
                     
-                     <div class="row">
-                    <div class="col-md-6 ">
-        
-                <h:form class="form-horizontal" role="form">
-                    <p:fieldset  style="margin-bottom:3px">
-                            <legend>Details Du client</legend>
-            
-                        <p:messages id="messages" showDetail="true" /> 
-                        <div class="col-md-6 col-md-offset-1">     
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Nif:" for="nif" />
-                    <p:inputText id="nif" value="#{clientDetailsMBean.details.nif}" title="Nif" />
-                    <p:outputLabel value="Nom:" for="nom" />
-                    <p:inputText id="nom" value="#{clientDetailsMBean.details.nom}" title="Nom" />
-                    <p:outputLabel value="Prenom:" for="prenom" />
-                    <p:inputText id="prenom" value="#{clientDetailsMBean.details.prenom}" title="Prenom" />
-                    <p:outputLabel value="Ville:" for="ville" />
-                    <p:inputText id="ville" value="#{clientDetailsMBean.details.addresse.ville}" title="Ville" />
-                    <p:outputLabel value="Rue" for="rue" />
-                    <p:inputText id="rue" value="#{clientDetailsMBean.details.addresse.rue}" title="Rue" />
-                    <p:outputLabel value="No:" for="numero" />
-                    <p:inputText id="numero" value="#{clientDetailsMBean.details.addresse.numero}" title="Numero" />
-                    <p:outputLabel value="Phone:" for="phone" />
-                    <p:inputText id="phone" value="#{clientDetailsMBean.details.phone}" title="Phone" />
-                    <p:outputLabel value="Email:" for="email" />
-                    <p:inputText id="email" value="#{clientDetailsMBean.details.email}" title="Email" />
-           
+                  <div class="panel panel-default">
+                        <div class="panel-heading">Details Du client</div>
                    
-                </p:panelGrid> 
-                            <div>
-                            <p:commandButton id="update" value="Modifier" action="#{clientDetailsMBean.update()}" type="submit"/>
-                            </div> </div>
-                    </p:fieldset>  
-            </h:form>
+                          <div class="panel-body">
+                              
+                          <h:form class="form-horizontal" role="form">   
+                             <p:messages id="messages" showDetail="true" /> 
+                     
+                        <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value="NIF * :" for="nif" />
+                            <div class="col-md-8">
+                                <p:inputText id="nif" value="#{clientDetailsMBean.details.nif}" title="Nif" readonly="true"/>
+                                <h:message for="nif" errorClass="errorMsg"/>
+                            </div>
+                       </div>
+                         <div class="form-group">
+                               <h:outputLabel class="col-md-3 control-label" value="Nom * :" for="nom" />
+                              <div class="col-md-9">
+                                  <p:inputText class="form-group-lg" id="nom" value="#{clientDetailsMBean.details.nom}" title="Nom" placeholder="Entrer votre nom" required="true" requiredMessage="Veuillez entrer votre nom ?"/>
+                               <h:message for="nom" errorClass="errorMsg"/>
+                          </div>
+                       </div> 
+                        
+                        <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value="Prénom * :" for="prenom" />
+                         <div class="col-md-9">
+                             <p:inputText class="form-group-lg" id="prenom" value="#{clientDetailsMBean.details.prenom}" title="Prenom" placeholder="Entrer votre prenom" required="true" requiredMessage="Veuillez entrer votre prenom ?" /> 
+                              <h:message for="prenom" errorClass="errorMsg"/>
+                         </div>
+                       </div>   
+                        
+             <div class="form-group">
+             <h:outputLabel class="col-md-3 control-label" value="Numero :" for="numero" />
+             
+            <div class="col-sm-8">
+                
+                 <p:inputText  id="numero" value="#{clientDetailsMBean.details.addresse.numero}"/>
+             
+              </div>
+             </div>
+            <div class="form-group">
+            <h:outputLabel class="col-md-3 control-label" value="Rue :" for="rue" />
+            <div class="col-sm-8">
+            <p:inputText class="form-group-lg" id="rue" value="#{clientDetailsMBean.details.addresse.rue}" title="Rue" placeholder="votre adresse"/>
+            </div>
+          </div>
+                         <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value="Ville :" for="ville" />
+                            <div class="col-sm-8">
+                            <p:inputText class="form-group-lg" id="ville" value="#{clientDetailsMBean.details.addresse.ville}" title="Ville" placeholder="Exemple : Port-au-prince" />
+                          </div>
+                         </div>
+                 
+                           
+                           <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value="Téléphone :" for="phone" />
+                            <div class="col-sm-8">
+                                <p:inputMask class="form-group-lg" id="phone" value="#{clientDetailsMBean.details.phone}" mask="(999) 9999-9999" />
+                            </div>
+                         </div>
                     
-                  </div>
-                    </div>  
+                           <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value="Email :" for="email" />
+                          <div class="col-sm-8"> 
+                            <p:inputText class="form-group-lg" id="email" value="#{clientDetailsMBean.details.email}" title="email" placeholder="Exemple : jhonsmith@gmail.com" />
+                          </div>
+                         </div>  
+    
+                             <div class="form-group">
+                             <div class="col-sm-offset-3 col-sm-8">
+                             <div class="pull-left">
+                                 <p:commandButton id="update" value="Modifier" action="#{clientDetailsMBean.update()}" type="submit" class="btn-lg bg-success"/>
+                              
+                                 
+                             </div>
+                             </div>
+                             </div>
+                </h:form> 
+                              
+                           </div></div>
+                            
+                      
                      </f:view>
 
             

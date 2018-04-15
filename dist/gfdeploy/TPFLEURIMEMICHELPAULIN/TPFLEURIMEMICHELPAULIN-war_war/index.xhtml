@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      >
+          >
     <h:head>
         <link type="text/css"
 		href="${facesContext.externalContext.requestContextPath}/resources/css/bootstrap.min.css"
@@ -24,18 +24,54 @@
 
           
             <ui:define name="content">           
-                <h:form class="container-fluid">
+               
+                <div class="col-md-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">   Consultation d'un compte</div>
                    
-                            <br/>
-                            <p class="text-justify">
-                                <h1>  Bienvenue </h1> sur notre banque electronique "Dozora", l'application de gestion de comptes bancaires.
-                                <br/>
-                                Cliquez sur le bouton en dessous pour générer les Comptes bancaires de test !</p>
-                                <br/>
-                                <br/>
-                            <p:commandButton id="creerComptesTest" value="Liste des comptes de test" action="#{clientBean.compteTest()}"/>
+                    <div class="panel-body">
+                        
+                        <h:form>
+                            
+                            <div>
+                                <label> Numero Compte : </label>
+                                <p:inputText value="${compteBancaireMBean.compteBancaire.numeroCompte}" title="numeroCompte"/>
+                                <h:commandButton value="Rechercher" action="#{compteBancaireMBean.Consulter(numeroCompte)}" type="submit" class="btn-md btn-success"> </h:commandButton> 
+                                
+                            </div>   
+                            
+                            
+                        </h:form>
+                        
+                    </div> </div>
                     
-                </h:form>
+                       <div class="panel panel-success">
+                           <div class="panel-heading"> Generer des comptes de test</div>
+                  
+                    <div class="panel-body">
+                        <h:commandButton value="Generer les comptes" />
+                    </div> </div>
+                </div>
+                
+                  <div class="col-md-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">  Operations sur le compte</div>
+                   
+                    <div class="panel-body">
+                        
+                    </div> </div>
+                    
+                       <div class="panel panel-success">
+                           <div class="panel-heading">  liste des operations</div>
+                    
+                    <div class="panel-body">
+                        
+                    </div>   </div>
+                </div>
+                
+                
+                
+                
             </ui:define>    
         </ui:composition>
 

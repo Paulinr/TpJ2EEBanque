@@ -8,7 +8,7 @@
           <style type="text/css">
               
               .f:facetclass{
-                  background-color: #245580;
+                 
                   color: white;
                   text-align: center;
                   padding: 3px;
@@ -29,27 +29,33 @@
 
             <ui:define name="content">
                 <f:view>
+                    
+                     <h:form >
+                    <div class="col-md-12">
+                    <div class="panel panel-success">
+                        
+                        <div class="panel-heading titreForm"><span class="titreForm">Liste des clients</span> 
+                        <h:commandLink> 
+                           <a href="ajouterClient.xhtml"><h:graphicImage value="resources/images/ajouter.png" width="32" height="32"  style="float: right;  "/>
+                           </a>
+                        </h:commandLink> 
+                        </div>
+                        
+                        
+                    <div class="panel-body">
                
-                <h:form >
+               
                     
                      <p:messages id="messages" /> 
-                    <div class="bouton_link btn-link">
-                        <p:link outcome="/ajouterClient.xhtml" value="Nouveau Client" style="color: white; font-size: 16px;background-color:#204d74;padding: 3px;"> </p:link>
+                    
                       
-                    </div>
-                   
-               <h1><h:outputText value="Liste des clients " style="font-size: 28px; color:navy;margin-left: 12px; " /></h1>
-                     <p:separator />
-                      <p:dataTable value="#{clientMBean.clients}" var="item" class="table table-striped"  
-		                         widgetVar="clientTable"
-                                 paginator="true" rows="2"
+   
+                      <p:dataTable value="#{clientMBean.clients}" var="item" class="table table-striped "
+                                 paginator="true" rows="10"
                                  emptyMessage="Aucun client trouvé avec ce critère !"
-                                 >
+                                 style="font-size: 12px; "  >
                     				 
-                          <p:column headerText="Id"
-                                 sortBy="#{item.id}"  
-                                 filterBy="#{item.id}"  
-                                 filterMatchMode="contains" width="10px"> 
+                          <p:column headerText="Id" width="40"> 
                                     
                               <h:link outcome="#{clientMBean.editClient(item.id)}" value="#{item.id}"/>   
                                      
@@ -58,21 +64,25 @@
                                 </p:column>"#{clientMBean.showDetails(item.id)}"
                         
                         
-                                 <p:column headerText="Nif" >
-                                      
+                                 <p:column headerText="Nif"
+                                           sortBy="#{item.nif}"  
+                                 filterBy="#{item.nif}"  
+                                 filterMatchMode="contains" width="120">
                                   <h:outputText  value="#{item.nif}"/>
                                
                                  </p:column>
-                                 <p:column headerText="Nom">
-                                     
+                                 <p:column headerText="Nom" 
+                                           sortBy="#{item.nom}"  
+                                           filterBy="#{item.nom}"  
+                                           filterMatchMode="contains" width="120">
                                      <h:outputText  value="#{item.nom}"/>
                                  </p:column>
-                                 <p:column headerText="Prenom">
+                                 <p:column headerText="Prenom" width="130">
                                     
                                      <h:outputText  value="#{item.prenom}"/>
                                  </p:column>
                                  
-                                 <p:column headerText="Telephone">
+                                 <p:column headerText="Telephone" width="120">
                                      
                                      <h:outputText  value="#{item.phone}"/>
                                  </p:column>
@@ -81,17 +91,19 @@
                                      <h:outputText  value="#{item.email}"/>
                                  </p:column>
                                 
-                                <p:column headerText="Action"> 
+                                <p:column headerText="Action" width="150" colspan="2"> 
                                     
-                                    <h:link outcome="#{clientMBean.editClient(item.id)}" value="Edit"/>  
-                                </p:column>"#{clientMBean.editClient(item.id)}"
+                                    <h:link outcome="#{clientMBean.detailClient(item.id)}" value=" Edit  |"/>
+                                    <h:link outcome="#{compteBancaireMBean.getCompteBancairesByCli(item.id)}" value=" Comptes |"/>
+                                     
+                                </p:column>
                                 
                              </p:dataTable>
                      
                    
-                </h:form>
-
-          
+               
+                    </div></div></div>
+           </h:form>
          </f:view>
           </ui:define>
         </ui:composition>

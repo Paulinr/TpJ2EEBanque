@@ -34,8 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
     @NamedQuery(name = "Client.findByClientId", query = "SELECT c FROM Client c WHERE c.id = :clientId"),
+    @NamedQuery(name = "Client.findByNif", query = "SELECT c FROM Client c WHERE c.nif = :nif"),
     @NamedQuery(name = "Client.findByNom", query = "SELECT c FROM Client c WHERE c.nom = :nom"),
+    @NamedQuery(name = "Client.nbClients", query = "SELECT COUNT(c) FROM Client c"),
     @NamedQuery(name = "Client.findByPrenom", query = "SELECT c FROM Client c WHERE c.prenom = :prenom")})
+      
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;

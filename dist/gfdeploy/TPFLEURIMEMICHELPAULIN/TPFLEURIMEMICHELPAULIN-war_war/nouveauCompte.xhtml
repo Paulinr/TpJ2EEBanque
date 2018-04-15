@@ -16,67 +16,63 @@
                
                 <f:view>
 
-
-                     <h:form class="form-horizontal" role="form">   
-                         
-                          <p:messages id="messages" /> 
-                    <div class="row">
-                    <div class="col-md-6 ">
-                        
-            
-              
-                        <p:fieldset  style="margin-bottom:3px">
-                            <legend style="background-color: #245580; color: white;text-align: center; padding: 3px;">Nouveau Compte</legend>
-            
-                       
-                        
-                         <div class="form-group">
-                            <h:outputLabel value="NumeroCompte:" for="numeroCompte" class="col-md-3 control-label" />
-                          <div class="col-md-8">
-                            <p:inputMask id="numeroCompte" value="#{compteBancaireMBean.compteBancaire.numeroCompte}" mask="999-9999-9999999" title="NumeroCompte" required="true" requiredMessage="The NumeroCompte field is required."/>
-                             </div>
-                             </div>
-                        
-                            <div class="form-group">
-                            <h:outputLabel value="Type de Compte:" for="nom" class="col-md-3 control-label" />
+                 <div class="panel panel-success">
+                        <div class="panel-heading"> Nouveau Compte</div>
+                   
+                          <div class="panel-body">
+                          <h:form class="form-horizontal" role="form">   
+                      
+                              <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value="NumeroCompte:" for="numeroCompte" />
                             <div class="col-md-8">
-                            <h:selectOneMenu id="nom" value="#{compteBancaireMBean.compteBancaire.nom}" style="width:150px">
-                              <f:selectItem  itemLabel="Select One" itemValue="" />
-                              <f:selectItem itemValue="Compte Courant"/>
-                              <f:selectItem itemValue="Compte d'epargne"/>
-                              <f:selectItem itemValue="Carte débit"/>
-                               </h:selectOneMenu>
-                              </div>
-                             </div>
-                        
-                           <div class="form-group">
-                           
-                            <h:outputLabel value="Solde Anterieur:" for="solde" class="col-md-3 control-label" />
-                            <div class="col-md-8"> 
-                            <h:inputText id="solde" value="#{compteBancaireMBean.compteBancaire.solde}" title="Solde" />
-                            </div></div>
-                        
+                                <p:inputMask class="form-group-lg" id="numeroCompte" value="#{compteBancaireMBean.compteBancaire.numeroCompte}" title="NumeroCompte" required="true" requiredMessage="The NumeroCompte field is required." mask="999-9999-9999999"/>
+                              <h:message for="nif" errorClass="errorMsg"/>
+                            </div>
+                       </div>
+                          
                             <div class="form-group">
-                            <h:outputLabel value="Client:" for="client" class="col-md-3 control-label" />
+                                <h:outputLabel class="col-md-3 control-label" value="Client:" for="client" />
+                                <div class="col-md-8">
+                                    <h:selectOneMenu id="client" value="#{compteBancaireMBean.client}" title="Client" style="width:170px"
+                                    converter="#{compteBancaireMBean.clientConverter}" >
+                                    <!-- TODO: update below reference to list of available items-->
+                                              <f:selectItems value="#{clientMBean.clients}"
+                                               var="item" itemLabel="#{item.nom} #{item.prenom}" itemValue="#{item}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <h:outputLabel class="col-md-3 control-label" value="TypeCompte:" for="typeCompte" />
+                                <div class="col-md-8">
+                                    <h:selectOneMenu id="typeCompte" value="#{compteBancaireMBean.compteBancaire.typeCompte}" title="TypeCompte" style="width:170px">
+                                     <f:selectItem  itemLabel="Selectionnez un compte" itemValue="" />
+                                     <f:selectItem itemLabel="Compte Courant Gdes" itemValue="Courant Gdes"/>
+                                     <f:selectItem itemLabel="Compte Courant Us" itemValue="Courant Us"/>
+                                     <f:selectItem itemLabel="Compte d'epargne Gdes" itemValue="Epargne Gdes" />
+                                     <f:selectItem itemLabel="Compte d'epargne Us" itemValue="Epargne Us" />
+                                    </h:selectOneMenu> 
+                                </div>
+                            </div>
+                              
+                              <div class="form-group">
+                            <h:outputLabel class="col-md-3 control-label" value=" Solde Anterieur :" for="solde" />
                             <div class="col-md-8">
-                            <h:selectOneMenu id="client" value="#{compteBancaireMBean.client}" title="Client" 
-                                converter="#{compteBancaireMBean.clientConverter}" >
-                        <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{clientMBean.clients}"
-                                           var="item" itemLabel="#{item.nom} #{item.prenom}" itemValue="#{item}" />
-                            </h:selectOneMenu>
-                             </div>
-                             </div>
-                        <div class="form-group">
+                                <p:inputNumber class="form-group-lg" id="solde" value="#{compteBancaireMBean.compteBancaire.solde}" title="solde" required="true" 
+                                           requiredMessage="Veuillez saisir le montant."  />
+                              <h:message for="nif" errorClass="errorMsg"/>
+                            </div>
+                            </div>
+                            
+                             <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-8">
                              <div class="pull-left">
-                            <h:commandButton id="ajouter"  value="Sauvegarder" action="#{compteBancaireMBean.addCompte()}" type="submit" class="btn btn-success"> </h:commandButton> 
+                            <h:commandButton id="ajouter"  value="Sauvegarder" action="#{compteBancaireMBean.addCompte()}" type="submit" class="btn-lg btn-success"> </h:commandButton> 
+                            
                              </div></div></div>
-                        </p:fieldset>
-                    </div>
-                    </div>
-                </h:form> 
-
+                            
+                    </h:form>
+                          </div></div>
+                     
         </f:view>
 
             

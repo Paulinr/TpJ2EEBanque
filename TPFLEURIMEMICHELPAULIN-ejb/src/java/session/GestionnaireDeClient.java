@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package session;
-
-import entities.Addresse;
 import entities.Client;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -20,29 +19,29 @@ import javax.persistence.Query;
  */
 @Stateless
 @LocalBean
-public class GestionnaireDeClient {
+public class GestionnaireDeClient implements Serializable  {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @PersistenceContext(unitName = "TPFLEURIMEMICHELPAULIN-ejbPU")
     private EntityManager em;
 
+  
     public void creerClient(Client client) {
         em.persist(client);
     }
 
+ 
     public List<Client> getAllClients() {
         Query query = em.createNamedQuery("Client.findAll");
         return query.getResultList();
     }
-
-   public void creerClientTest() {
-        Addresse addresse = new Addresse("Delmas", "Rue Maguana", 10);
-
-        creerClient(new Client("004-081-247-5","MICHEL", "Dominique", addresse, "50937106151", "domil2010@gmail.com"));
-
+     public int getNbClients(){
+        Query query = em.createNamedQuery("Client.nbClients");
+        
+        return ((Long) query.getSingleResult()).intValue();
     }
-
+    
     public Client update(Client client) {
         return em.merge(client);
     }
@@ -53,5 +52,10 @@ public class GestionnaireDeClient {
 
     public Client getClient(Long idClient) {
         return em.find(Client.class, idClient);
+    }
+
+    public Client getClientByNif(String nif) {
+        Query query = em.createNamedQuery("Client.findByNif").setParameter("nif", nif);
+        return (Client)query.getSingleResult();
     }
 }

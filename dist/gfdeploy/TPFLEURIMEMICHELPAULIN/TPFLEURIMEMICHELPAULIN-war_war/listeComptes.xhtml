@@ -6,8 +6,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Liste clients</title>
-        <link type="text/css"
+        <title>Liste comptes</title>
+       <link type="text/css"
 		href="${facesContext.externalContext.requestContextPath}/resources/css/style.css"
 		rel="stylesheet" />
         <link type="text/css"
@@ -19,54 +19,80 @@
 
             <ui:define name="content">
         <f:view>
-
+            
             <h:form>
+             <div class="col-md-12">
+                    <div class="panel panel-success">
+                        
+                        <div class="panel-heading " > <span class="titreForm">Liste des comptes</span>  
+                         <h:commandLink> 
+                           <a href="nouveauCompte.xhtml"><h:graphicImage value="resources/images/ajouter.png" width="32" height="32"  style="float: right;  "/>
+                           </a>
+                        </h:commandLink>
+                        </div>
+                        
+                    <div class="panel-body">
+            
                 <p:messages id="messages" /> 
-                
-                <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{compteBancaireMBean.compteBancaires}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
+                  
+                <p:dataTable value="#{compteBancaireMBean.compteBancaires}" var="item"  
+                                 widgetVar="compteTable"
+                                 paginator="true" rows="10"
+                                 emptyMessage="Aucun compte trouvé avec ce critère !"
+                             style="color:navy; background-color: white; font-size: 12px;"
+                             tableStyleClass="table">
+                   
+                    <p:column
+                         headerText="No. Compte"
+                                 sortBy="#{item.numeroCompte}"  
+                                 filterBy="#{item.numeroCompte}"  
+                                 filterMatchMode="contains" width="15px">
+                           
+                        <h:outputText value="#{item.numeroCompte}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nom}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Solde"/>
-                        </f:facet>
-                        <h:outputText value="#{item.solde}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom"/>
-                        </f:facet>
+                    <p:column
+                       headerText="Nom"
+                       sortBy="#{item.client.nom}"  
+                                 filterBy="#{item.client.nom}"  
+                                 filterMatchMode="contains" width="15px">
                         <h:outputText value="#{item.client.nom}"/>
                     </p:column>
                     
                      <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preom"/>
+                            <h:outputText value="Prenom"/>
                         </f:facet>
                          <h:outputText value="#{item.client.prenom}"/>
                     </p:column>
+                    <p:column  headerText="Type de Compte"
+                               sortBy="#{item.typeCompte}"  
+                               filterBy="#{item.typeCompte}"  
+                                 filterMatchMode="contains" width="15px">
+                        <h:outputText value="#{item.typeCompte}"/>
+                    </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="NumeroCompte"/>
+                            <h:outputText value="Balance"/>
                         </f:facet>
-                        <h:outputText value="#{item.numeroCompte}"/>
+                        <h:outputText value="#{item.solde}"/>
                     </p:column>
+                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Action"/>
+                        </f:facet>
+                         <h:link outcome="#{compteBancaireMBean.getOperation(item.id)}" value=" Transaction |"/>
+                         <h:link  outcome="#{compteBancaireMBean.getVirement(item.client.id)}" value=" Virement "/>
+                        
+                          
+                    </p:column>
+                    
+                    
+                    
                 </p:dataTable>
-            </h:form>
-
             
-          
+
+                    </div></div></div>
+          </h:form>
         </f:view>
 
           </ui:define>
