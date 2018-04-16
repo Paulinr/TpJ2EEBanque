@@ -23,7 +23,7 @@ public class GestionnaireDeClient implements Serializable  {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    @PersistenceContext(unitName = "TPFLEURIMEMICHELPAULIN-ejbPU")
+    @PersistenceContext (unitName = "TPFLEURIMEMICHELPAULIN-ejbPU")
     private EntityManager em;
 
   

@@ -6,6 +6,7 @@
 package session;
 
 import entities.Groupe;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -19,7 +20,7 @@ import javax.persistence.Query;
  */
 @Stateless
 @LocalBean
-public class geestionGroupe {
+public class geestionGroupe implements Serializable{
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

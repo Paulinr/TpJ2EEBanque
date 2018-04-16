@@ -6,6 +6,7 @@
 package session;
 
 import entities.Users;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.ejb.LocalBean;
@@ -19,7 +20,7 @@ import javax.persistence.Query;
  */
 @Stateful
 @LocalBean
-public class GestionUsers {
+public class GestionUsers implements Serializable{
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
