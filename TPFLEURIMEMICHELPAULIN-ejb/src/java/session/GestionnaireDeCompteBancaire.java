@@ -136,7 +136,6 @@ public class GestionnaireDeCompteBancaire implements Serializable {
         compte.retirer(montant);
         creerOperation(compte, "Retrait", montant);
         em.merge(compte);
-        System.out.println("RETRAIT REUSSI");
         return update (compte);
     }
     
@@ -173,19 +172,15 @@ public class GestionnaireDeCompteBancaire implements Serializable {
      public void virement(Long idDebiteur, Long idCrediteur, float montant){
 //         try {
              //ut.begin();
-             System.out.println("==========================");
-             System.out.println("idDebiteur: "+idDebiteur);
-             System.out.println("idCrediteur: "+idCrediteur);
-             System.out.println("Montant: "+montant);
-             System.out.println("==========================");
-        CompteBancaire compteDebiteur = getCompteBancaire(idDebiteur);// getCompteBancaire(idDebiteur);
-        CompteBancaire compteCrediteur= getCompteBancaire(idCrediteur);
-        
+        //CompteBancaire compteDebiteur = getCompteBancaire(idDebiteur);// getCompteBancaire(idDebiteur);
+        //CompteBancaire compteCrediteur= getCompteBancaire(idCrediteur);
+        transaction(0, getCompteBancaire(idDebiteur), montant);
+        transaction(1, getCompteBancaire(idCrediteur), montant);
        //compteDebiteur.retirer(montant);
        //compteCrediteur.deposer(montant);
         
-        debiterCompte(compteDebiteur, montant);
-        crediterCompte(compteCrediteur, montant);
+        //debiterCompte(compteDebiteur, montant);
+        //crediterCompte(compteCrediteur, montant);
         
 //        creerOperation(compteDebiteur, "Virement effectué à "+compteCrediteur.getClient().getNom()+"-"+compteCrediteur.getClient().getPrenom(), montant);
 //        creerOperation(compteCrediteur, "Virement reçu de "+ compteDebiteur.getClient().getNom()+"-"+compteDebiteur.getClient().getPrenom(), montant);

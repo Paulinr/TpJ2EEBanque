@@ -44,12 +44,10 @@
                             <div class="form-group">
                                 <h:outputLabel class="col-md-3 control-label" value="TypeCompte:" for="typeCompte" />
                                 <div class="col-md-8">
-                                    <h:selectOneMenu id="typeCompte" value="#{compteBancaireMBean.compteBancaire.typeCompte}" title="TypeCompte" style="width:170px">
+                                    <h:selectOneMenu id="typeCompte" value="#{compteBancaireMBean.compteBancaire.typeCompte}" title="TypeCompte" style="width:170px" required="true">
                                      <f:selectItem  itemLabel="Selectionnez un compte" itemValue="" />
-                                     <f:selectItem itemLabel="Compte Courant Gdes" itemValue="Courant Gdes"/>
-                                     <f:selectItem itemLabel="Compte Courant Us" itemValue="Courant Us"/>
-                                     <f:selectItem itemLabel="Compte d'epargne Gdes" itemValue="Epargne Gdes" />
-                                     <f:selectItem itemLabel="Compte d'epargne Us" itemValue="Epargne Us" />
+                                     <f:selectItem itemLabel="Compte Courant Gdes" itemValue="Compte Courant"/>
+                                     <f:selectItem itemLabel="Compte d'epargne Gdes" itemValue="Compte Epargne" />
                                     </h:selectOneMenu> 
                                 </div>
                             </div>
